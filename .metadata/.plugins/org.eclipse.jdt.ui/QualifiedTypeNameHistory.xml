@@ -11,4 +11,10 @@
     <fullyQualifiedTypeName name="jakarta.persistence.Temporal"/>
     <fullyQualifiedTypeName name="jakarta.persistence.Transient"/>
     <fullyQualifiedTypeName name="br.com.erudio.model.Book"/>
+    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
+    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
+    <fullyQualifiedTypeName name="org.springframework.web.cors.reactive.CorsConfigurationSource"/>
+    <fullyQualifiedTypeName name="org.springframework.web.cors.UrlBasedCorsConfigurationSource"/>
+    <fullyQualifiedTypeName name="org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
 </qualifiedTypeNameHistroy>

@@ -1,8 +1,0 @@
-package br.com.erudio.proxy;
-
-import org.springframework.cloud.openfeign.FeignClient;
-
-@FeignClient(name = "exchange-service", url = "localhost:8000")
-public interface ExchangeProxy {
-
-}

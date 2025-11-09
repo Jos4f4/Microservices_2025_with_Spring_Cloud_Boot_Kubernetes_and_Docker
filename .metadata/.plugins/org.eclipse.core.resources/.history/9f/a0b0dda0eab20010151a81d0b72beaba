@@ -1,7 +1,0 @@
-package br.com.erudio.service;
-
-import org.springframework.context.ApplicationListener;
-
-public class InstanceInformationService implements ApplicationListener<WebServerInitializeEvent> {
-
-}

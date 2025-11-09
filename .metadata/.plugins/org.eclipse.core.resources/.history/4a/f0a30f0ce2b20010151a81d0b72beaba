@@ -1,7 +1,0 @@
-package br.com.erudio.model;
-
-import java.io.Serializable;
-
-public class Exchange implements Serializable {
-
-}
