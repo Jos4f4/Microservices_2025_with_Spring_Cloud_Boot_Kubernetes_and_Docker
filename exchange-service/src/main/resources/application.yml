@@ -22,6 +22,12 @@ spring:
    hibernate:
   show-sql: false
   open-on-view: false
+ management:
+  tracing:
+   sampling:
+    probability: 1.0
+ zipkin:
+  base-url: htpp://localhost:9411
 springdoc:
  api-docs:
   path: /exchange-service/v3/api-docs

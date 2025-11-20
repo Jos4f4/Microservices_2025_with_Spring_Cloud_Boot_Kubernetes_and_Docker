@@ -8,10 +8,10 @@ INDEX VERSION 1.134+J:\Projetos\microservices-with-spring-cloud-and-java-erudio\
 1991335901.index
 1865797976.index
 1528872902.index
-1311608254.index
-2187004688.index
 909069909.index
+2187004688.index
 1025006957.index
+1311608254.index
 553525384.index
 3447086497.index
 2957885532.index
@@ -29,8 +29,8 @@ INDEX VERSION 1.134+J:\Projetos\microservices-with-spring-cloud-and-java-erudio\
 280565160.index
 3445876383.index
 433190476.index
-432680698.index
 1845272529.index
+432680698.index
 882731097.index
 138628605.index
 2607895007.index
@@ -89,12 +89,12 @@ INDEX VERSION 1.134+J:\Projetos\microservices-with-spring-cloud-and-java-erudio\
 15642446.index
 3014026129.index
 2487779596.index
-1516012823.index
+3722778749.index
 637390047.index
-2018160624.index
+1516012823.index
 3510765551.index
 2454489577.index
-3722778749.index
+2018160624.index
 3243251820.index
 3943984067.index
 1553594802.index
@@ -246,7 +246,6 @@ INDEX VERSION 1.134+J:\Projetos\microservices-with-spring-cloud-and-java-erudio\
 3382699084.index
 216167568.index
 2435167211.index
-2994336910.index
 278228034.index
 1666847038.index
 876605502.index

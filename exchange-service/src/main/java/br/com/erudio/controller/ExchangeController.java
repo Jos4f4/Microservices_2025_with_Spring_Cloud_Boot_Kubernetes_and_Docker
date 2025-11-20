@@ -2,6 +2,8 @@ package br.com.erudio.controller;
 
 import java.math.BigDecimal;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("exchange-service")
 public class ExchangeController {
 	
+	private Logger logger = LoggerFactory.getLogger(ExchangeController.class);
+			
 	@Autowired
 	InstanceInformationService informationService;
 	
@@ -34,6 +38,7 @@ public class ExchangeController {
 			@PathVariable("from") String from, 
 			@PathVariable("to") String to) {
 		
+		logger.info("getExchange is called with -> {}, {} and {}", amount, from, to);
 		Exchange exchange = repository.findByFromAndTo(from, to);
 		
 		if(exchange == null) throw new RuntimeException("Currency Unsupported!");

@@ -15,7 +15,13 @@ spring:
       - id: exchange-service
         uri: lb://exchange-service 
         predicates:
-         - Path=/exchange-service/**    
+         - Path=/exchange-service/**
+ management:
+  tracing:
+   sampling:
+    probability: 1.0    
+ zipkin:
+  base-url: htpp://localhost:9411
 springdoc:
  swagger-ui:
   urls:
