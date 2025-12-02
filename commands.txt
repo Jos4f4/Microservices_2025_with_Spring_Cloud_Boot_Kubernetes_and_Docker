@@ -1,0 +1,7 @@
+mvn spring-boot:build-image -DskipTests
+
+mvn clean package
+
+docker image ls
+
+docker compose up

@@ -6,7 +6,7 @@ eureka:
   instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
  client:
   service-url:
-   defaultZone: http://localhost:8761/eureka
+   defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka}
 spring:
  application:
   name: exchange-service
@@ -27,7 +27,7 @@ spring:
    sampling:
     probability: 1.0
  zipkin:
-  base-url: htpp://localhost:9411
+  base-url: ${SPRING_ZIPKIN_BASEURL:http://localhost:9411}
 springdoc:
  api-docs:
   path: /exchange-service/v3/api-docs

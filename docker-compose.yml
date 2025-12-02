@@ -1,0 +1,106 @@
+#docker run -p 8761:8761 jos4f4/naming-server:1.9.24
+services:
+ zipkin-server:
+  image: openzipkin/zipkin:3.5.1
+  ports:
+   - 9411:9411
+  restart: always
+  networks:
+   - erudio-network
+ naming-server:
+  image: jos4f4/naming-server:1.9.24
+  ports:
+   - 8761:8761
+  restart: always
+  depends_on:
+   - zipkin-server
+  networks:
+   - erudio-network
+ api-gateway:
+  image: docker.io/jos4f4/api-gateway:1.9.24 
+  ports:
+   - 8765:8765
+  restart: always
+  depends_on: 
+   - zipkin-server
+   - naming-server
+  environment:
+   SPRING_ZIPKIN_BASEURL: http://zipkin-server:9411
+   EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://naming-server:8761/eureka
+  networks:
+   - erudio-network
+ book-db:
+  image: mysql:9.3.0
+  restart: always
+  environment:
+   TZ: America/Sao_Paulo
+   MYSQL_ROOT_PASSWORD: password
+   #MYSQL_USER: root
+   MYSQL_PASSWORD: password
+   MYSQL_DATABASE: book_service
+  ports:
+   - 3310:3306
+  networks:
+   - erudio-network
+ exchange-db:
+  image: mysql:9.3.0
+  restart: always
+  environment:
+   TZ: America/Sao_Paulo
+   MYSQL_ROOT_PASSWORD: password
+   #MYSQL_USER: root
+   MYSQL_PASSWORD: password
+   MYSQL_DATABASE: exchange_service
+  ports:
+   - 3308:3306
+  networks:
+   - erudio-network
+ exchange-service:
+  image: jos4f4/exchange-service
+  restart: always
+  build:
+   context: ./exchange-service
+   dockerfile: Dockerfile
+  environment:
+   TZ: America/Sao_Paulo
+   SPRING_ZIPKIN_BASEURL: http://zipkin-server:9411
+   EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://naming-server:8761/eureka
+   SPRING_DATASOURCE_URL: jdbc:mysql://exchange-db:3306/exchange-service?useSSL=false&allowPublicKeyRetrieval=true&serverTimeZone=UTC&enabledTLSProtocols=TLSv1.2
+   SPRING_DATASOURCE_USERNAME: root
+   SPRING_DATASOURCE_PASSWORD: password
+  depends_on:
+   - zipkin-server
+   - naming-server
+   - exchange-db
+  ports:
+   - 8000:8000
+  networks:
+   - erudio-network
+ book-service:
+  image: jos4f4/book-service
+  restart: always
+  build:
+    context: ./book-service
+    dockerfile: Dockerfile
+  environment:
+    TZ: America/Sao_Paulo
+    SPRING_ZIPKIN_BASEURL: http://zipkin-server:9411
+    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://naming-server:8761/eureka
+    SPRING_DATASOURCE_URL: jdbc:mysql://book-db:3306/book-service?useSSL=false&allowPublicKeyRetrieval=true&serverTimeZone=UTC&enabledTLSProtocols=TLSv1.2
+    SPRING_DATASOURCE_USERNAME: root
+    SPRING_DATASOURCE_PASSWORD: password
+  depends_on:
+    - zipkin-server
+    - naming-server
+    - book-db
+  ports:
+    - 8100:8100
+  networks:
+    - erudio-network
+   
+# docker.io/jos4f4/api-gateway:1.9.24  
+# docker run -d -p 9411:9411 openzipkin/zipkin:3.5.1
+networks:
+ erudio-network:
+  name: erudio-network
+  driver: bridge
