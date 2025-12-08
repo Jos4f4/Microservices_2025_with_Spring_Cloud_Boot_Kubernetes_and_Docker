@@ -25,6 +25,6 @@ jobs:
         distribution: 'adopt'
 
     - name: Build Eureka Naming Server Docker Image
-      working-directory: ./Microservices_2025_with_Spring_Cloud_Boot_Kubernetes_and_Docker/naming-server
+      working-directory: ./Projetos/microservices-with-spring-cloud-and-java-erudio/Microservices_2025_with_Spring_Cloud_Boot_Kubernetes_and_Docker/naming-server
       run: mvn spring-boot:build-image -DskipTests
       
